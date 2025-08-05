@@ -10,14 +10,14 @@ const typeDefs = gql`
     }
 
     type Pet {
-        id: ID
+        id: ID!
         name: String
         type: String
         createdAt: Int
     }
 
     type Query {
-        pets: [Pet]
+        pets: [Pet!]
     }
 `;
 
