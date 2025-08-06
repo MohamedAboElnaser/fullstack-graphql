@@ -1,7 +1,32 @@
 {
-  "user": {
-    "id": "jBWMVGjm50l6LGwepDoty",
-    "username": "frontendmaster"
-  },
-  "pet": []
+    "user": {
+        "id": "jBWMVGjm50l6LGwepDoty",
+        "username": "frontendmaster"
+    },
+    "pet": [
+        {
+            "id": "1CdMaqKGAUSw9700YTOG5",
+            "createdAt": 1754498032784,
+            "name": "samira",
+            "type": "CAT"
+        },
+        {
+            "id": "uyIdMsK-yZ33WrynBihhf",
+            "createdAt": 1754498043871,
+            "name": "soltan-1",
+            "type": "DOG"
+        },
+        {
+            "id": "XhVQZssMa06MX4_EDQeE6",
+            "createdAt": 1754498060076,
+            "name": "meshmesha",
+            "type": "CAT"
+        },
+        {
+            "id": "uhmU298j0rrg1YG8DRo1p",
+            "createdAt": 1754498082558,
+            "name": "Raad",
+            "type": "DOG"
+        }
+    ]
 }

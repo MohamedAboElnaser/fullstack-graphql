@@ -17,10 +17,7 @@ module.exports = {
          */
         pets(_parent, { input }, { models }, _info) {
             console.log("input:", input);
-            return [
-                { id: 1, name: "meshmes" },
-                { id: 2, name: "soltan" },
-            ];
+            return models.Pet.findMany(input)
         },
     },
     Pet: {
@@ -41,18 +38,15 @@ module.exports = {
     },
     // User: {},
     Mutation: {
-        addPet(_parent, { input },ctx) {
-            // This resolver will handle the addPet mutation
-            // Here you would typically add the pet to the database
-            // For now, we will just return a mock pet object
+        addPet(_parent, { input }, ctx) {
+            // Log the input to see what is being passed
             console.log("Adding pet with input:", input);
-            
-            return {
-                id: Math.floor(Math.random() * 1000), // Simulate a new ID
+            // Call the create method from the Pet model to add a new pet
+            return ctx.models.Pet.create({
                 name: input.name,
                 type: input.type,
-                createdAt: new Date().toString(), // Current timestamp as strin
-            };
+            });
         },
     },
+
 };
