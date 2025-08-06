@@ -15,7 +15,8 @@ module.exports = {
          * @param {*} _info This is the info object from the query
          * @returns
          */
-        pets(_parent, _args, { models }, _info) {
+        pets(_parent, { input }, { models }, _info) {
+            console.log("input:", input);
             return [
                 { id: 1, name: "meshmes" },
                 { id: 2, name: "soltan" },
