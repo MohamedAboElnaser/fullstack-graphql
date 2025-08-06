@@ -24,11 +24,11 @@ module.exports = {
     },
     // Mutation: {},
     Pet: {
-        // img(pet) {
-        //     return pet.type === "DOG"
-        //         ? "https://placedog.net/300/300"
-        //         : "http://placekitten.com/300/300";
-        // },
+        img(pet) {
+            return pet.type === "DOG"
+                ? "https://placedog.net/300/300"
+                : "http://placekitten.com/300/300";
+        },
         // This resolver is used to resolve the id field of the Pet type
         // this means that resolver is executed after the pets query
         id(pet) {
