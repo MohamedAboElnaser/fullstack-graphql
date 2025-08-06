@@ -23,7 +23,6 @@ module.exports = {
             ];
         },
     },
-    // Mutation: {},
     Pet: {
         img(pet) {
             return pet.type === "DOG"
@@ -32,14 +31,28 @@ module.exports = {
         },
         // This resolver is used to resolve the id field of the Pet type
         // this means that resolver is executed after the pets query
-        id(pet) {
-            // This resolver will override value of id field in Pet type
-            console.log("id resolver called for pet:", pet);
-            return `pet-${pet.id}`;
-        },
+        // id(pet) {
+        //     // This resolver will override value of id field in Pet type
+        //     console.log("id resolver called for pet:", pet);
+        // },
         createdAt() {
             return Date().toString(); // Return current timestamp as string
         },
     },
     // User: {},
+    Mutation: {
+        addPet(_parent, { input },ctx) {
+            // This resolver will handle the addPet mutation
+            // Here you would typically add the pet to the database
+            // For now, we will just return a mock pet object
+            console.log("Adding pet with input:", input);
+            
+            return {
+                id: Math.floor(Math.random() * 1000), // Simulate a new ID
+                name: input.name,
+                type: input.type,
+                createdAt: new Date().toString(), // Current timestamp as strin
+            };
+        },
+    },
 };

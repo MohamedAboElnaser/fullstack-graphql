@@ -25,6 +25,11 @@ const typeDefs = gql`
     type Query {
         pets(input: PetInput): [Pet!]
     }
+
+     
+    type Mutation {
+        addPet(input: PetInput): Pet
+    }
 `;
 
 module.exports = typeDefs;
