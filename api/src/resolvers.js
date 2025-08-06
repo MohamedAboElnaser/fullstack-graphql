@@ -37,6 +37,9 @@ module.exports = {
             console.log("id resolver called for pet:", pet);
             return `pet-${pet.id}`;
         },
+        createdAt() {
+            return Date().toString(); // Return current timestamp as string
+        },
     },
     // User: {},
 };

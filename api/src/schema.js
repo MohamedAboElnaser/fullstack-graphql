@@ -13,7 +13,7 @@ const typeDefs = gql`
         id: ID!
         name: String
         type: String
-        createdAt: Int
+        createdAt: String
         img: String
     }
 
