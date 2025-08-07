@@ -19,6 +19,25 @@ module.exports = {
             console.log("input:", input);
             return models.Pet.findMany(input);
         },
+        vehicles(_parent, { input }) {
+            return [
+                {
+                    name: "Car",
+                    numberOfWheels: "FOUR",
+                    trunkSize: 500, // Example value for Car
+                },
+                {
+                    name: "Bike",
+                    numberOfWheels: "TWO",
+                    hasBell: true, // Example value for Bike
+                },
+                {
+                    name: "toktok",
+                    numberOfWheels: "THREE",
+                    isBlack: true, // Example value for Toktok
+                },
+            ];
+        },
     },
     Pet: {
         img(pet) {
@@ -44,6 +63,45 @@ module.exports = {
                 name: input.name,
                 type: input.type,
             });
+        },
+        addVehicle(__, { input }, ctx) {
+            // Log the input to see what is being passed
+            console.log("Adding vehicle with input:", input);
+            // Here you would typically call a method to add the vehicle to database
+            // For now, we will just return a mock object
+            if (input.numberOfWheels === "FOUR") {
+                return {
+                    name: input.name,
+                    numberOfWheels: input.numberOfWheels,
+                    trunkSize: 500, // Example value for Car
+                };
+            } else if (input.numberOfWheels === "TWO") {
+                return {
+                    name: input.name,
+                    numberOfWheels: input.numberOfWheels,
+                    hasBell: true, // Example value for Bike
+                };
+            } else if (input.numberOfWheels === "THREE") {
+                return {
+                    name: input.name,
+                    numberOfWheels: input.numberOfWheels,
+                    isBlack: true, // Example value for Toktok
+                };
+            }
+        },
+    },
+    Vehicle: {
+        __resolveType(vehicle) {
+            if (vehicle.numberOfWheels === "FOUR") {
+                return "Car";
+            }
+            if (vehicle.numberOfWheels === "TWO") {
+                return "Bike";
+            }
+            if (vehicle.numberOfWheels === "THREE") {
+                return "Toktok";
+            }
+            return null; // GraphQL will throw an error if no type matches
         },
     },
 };
