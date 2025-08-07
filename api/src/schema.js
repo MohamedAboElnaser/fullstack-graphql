@@ -9,6 +9,10 @@ const typeDefs = gql`
         username: String
     }
 
+    """
+    Description in this space will be available in the GraphQL Playground
+    So you can use it to document your schema or provide additional context
+    """
     type Pet {
         id: ID!
         name: String
@@ -27,7 +31,6 @@ const typeDefs = gql`
         pets(input: PetInput): [Pet!]
     }
 
-     
     type Mutation {
         addPet(input: PetInput): Pet!
     }
