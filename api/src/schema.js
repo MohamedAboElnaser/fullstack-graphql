@@ -14,6 +14,7 @@ const typeDefs = gql`
         name: String
         type: String
         createdAt: String
+        isAdopted: Boolean
         img: String
     }
 

@@ -17,7 +17,7 @@ module.exports = {
          */
         pets(_parent, { input }, { models }, _info) {
             console.log("input:", input);
-            return models.Pet.findMany(input)
+            return models.Pet.findMany(input);
         },
     },
     Pet: {
@@ -26,14 +26,12 @@ module.exports = {
                 ? "https://placedog.net/300/300"
                 : "http://placekitten.com/300/300";
         },
-        // This resolver is used to resolve the id field of the Pet type
-        // this means that resolver is executed after the pets query
-        // id(pet) {
-        //     // This resolver will override value of id field in Pet type
-        //     console.log("id resolver called for pet:", pet);
-        // },
+        // Assuming createdAt and isAdopted are not in the database, we can provide default values
         createdAt() {
             return Date().toString(); // Return current timestamp as string
+        },
+        isAdopted() {
+            return false; // Default value for isAdopted
         },
     },
     // User: {},
@@ -48,5 +46,4 @@ module.exports = {
             });
         },
     },
-
 };
