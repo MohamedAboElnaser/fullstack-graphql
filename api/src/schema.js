@@ -24,7 +24,7 @@ const typeDefs = gql`
 
     input PetInput {
         name: String
-        type: String
+        type: PetType
     }
 
     type Query {
@@ -33,6 +33,12 @@ const typeDefs = gql`
 
     type Mutation {
         addPet(input: PetInput): Pet!
+    }
+
+    enum PetType {
+        DOG
+        CAT
+        RABBIT
     }
 `;
 
