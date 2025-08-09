@@ -9,6 +9,7 @@ const typeDefs = gql`
         username: String
         email: String!
         vehicles: [Vehicle]
+        pets(input:PetInput): [Pet]
     }
 
     """
@@ -22,6 +23,7 @@ const typeDefs = gql`
         createdAt: String
         isAdopted: Boolean
         img: String
+        owner: User!
     }
     interface Vehicle {
         name: String!

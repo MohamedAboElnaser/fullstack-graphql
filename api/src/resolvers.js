@@ -59,12 +59,21 @@ module.exports = {
         isAdopted() {
             return false; // Default value for isAdopted
         },
+        owner(pet, __, ctx) {
+            // Return the user associated with the pet
+            return ctx.user; // Assuming the user is available in context
+        },
     },
     User: {
         vehicles(user, __, ctx) {
             // we can call database to get the vehicles for the user
             // For now, we will return the hardcoded vehicles
             return vehicles;
+        },
+        pets(user, {input}, ctx) {
+            // we can call database to get the pets for the user
+            return ctx.models.Pet.findMany(input)
+             
         },
     },
     Mutation: {
