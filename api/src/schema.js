@@ -9,7 +9,7 @@ const typeDefs = gql`
         username: String
         email: String!
         vehicles: [Vehicle]
-        pets(input:PetInput): [Pet]
+        pets(input: PetInput): [Pet]
     }
 
     """
@@ -64,6 +64,7 @@ const typeDefs = gql`
     type Query {
         pets(input: PetInput): [Pet!]
         vehicles(input: vehicleInput): [Vehicle!]!
+        pet(input: PetInput): Pet
     }
 
     type Mutation {

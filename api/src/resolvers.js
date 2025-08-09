@@ -45,8 +45,13 @@ module.exports = {
         vehicles(_parent, { input }) {
             return vehicles;
         },
+        pet(__, { input }, ctx) {
+            return ctx.models.Pet.findOne(input); // Assuming findOne is a method in the Pet model
+        },
     },
     Pet: {
+        // This called field level resolver
+        // It is called for each field in the Pet type
         img(pet) {
             return pet.type === "DOG"
                 ? "https://placedog.net/300/300"
@@ -61,7 +66,7 @@ module.exports = {
         },
         owner(pet, __, ctx) {
             // Return the user associated with the pet
-            return ctx.user; // Assuming the user is available in context
+            return ctx.models.User.findOne();
         },
     },
     User: {
@@ -70,13 +75,13 @@ module.exports = {
             // For now, we will return the hardcoded vehicles
             return vehicles;
         },
-        pets(user, {input}, ctx) {
+        pets(user, { input }, ctx) {
             // we can call database to get the pets for the user
-            return ctx.models.Pet.findMany(input)
-             
+            return ctx.models.Pet.findMany(input);
         },
     },
     Mutation: {
+        // This called top level resolver
         addPet(_parent, { input }, ctx) {
             // Log the input to see what is being passed
             console.log("Adding pet with input:", input);
