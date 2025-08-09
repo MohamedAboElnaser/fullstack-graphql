@@ -2,6 +2,29 @@
  * Here are your Resolvers for your Schema. They must match
  * the type definitions in your schema
  */
+// Hard coded data for demonstration purposes
+const user = {
+    id: "1",
+    username: "user1",
+    email: "user@domain.something",
+};
+const vehicles = [
+    {
+        name: "Car",
+        numberOfWheels: "FOUR",
+        trunkSize: 500, // Example value for Car
+    },
+    {
+        name: "Bike",
+        numberOfWheels: "TWO",
+        hasBell: true, // Example value for Bike
+    },
+    {
+        name: "toktok",
+        numberOfWheels: "THREE",
+        isBlack: true, // Example value for Toktok
+    },
+];
 
 module.exports = {
     Query: {
@@ -20,23 +43,7 @@ module.exports = {
             return models.Pet.findMany(input);
         },
         vehicles(_parent, { input }) {
-            return [
-                {
-                    name: "Car",
-                    numberOfWheels: "FOUR",
-                    trunkSize: 500, // Example value for Car
-                },
-                {
-                    name: "Bike",
-                    numberOfWheels: "TWO",
-                    hasBell: true, // Example value for Bike
-                },
-                {
-                    name: "toktok",
-                    numberOfWheels: "THREE",
-                    isBlack: true, // Example value for Toktok
-                },
-            ];
+            return vehicles;
         },
     },
     Pet: {
@@ -53,7 +60,13 @@ module.exports = {
             return false; // Default value for isAdopted
         },
     },
-    // User: {},
+    User: {
+        vehicles(user, __, ctx) {
+            // we can call database to get the vehicles for the user
+            // For now, we will return the hardcoded vehicles
+            return vehicles;
+        },
+    },
     Mutation: {
         addPet(_parent, { input }, ctx) {
             // Log the input to see what is being passed
@@ -102,6 +115,24 @@ module.exports = {
                 return "Toktok";
             }
             return null; // GraphQL will throw an error if no type matches
+        },
+    },
+    Car: {
+        user(car, __, ctx) {
+            //
+            return user; // Return the user object for Car
+        },
+    },
+    Bike: {
+        user(bike, __, ctx) {
+            //
+            return user; // Return the user object for Bike
+        },
+    },
+    Toktok: {
+        user(toktok, __, ctx) {
+            //
+            return user; // Return the user object for Toktok
         },
     },
 };

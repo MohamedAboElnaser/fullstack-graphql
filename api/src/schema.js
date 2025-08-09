@@ -7,6 +7,8 @@ const typeDefs = gql`
     type User {
         id: ID
         username: String
+        email: String!
+        vehicles: [Vehicle]
     }
 
     """
@@ -24,24 +26,28 @@ const typeDefs = gql`
     interface Vehicle {
         name: String!
         numberOfWheels: NumberOfWheels!
+        user: User!
     }
 
     type Car implements Vehicle {
         name: String!
         numberOfWheels: NumberOfWheels!
         trunkSize: Int!
+        user: User!
     }
 
     type Bike implements Vehicle {
         name: String!
         numberOfWheels: NumberOfWheels!
         hasBell: Boolean!
+        user: User!
     }
 
     type Toktok implements Vehicle {
         name: String!
         numberOfWheels: NumberOfWheels!
         isBlack: Boolean!
+        user: User!
     }
 
     input PetInput {
